@@ -1,0 +1,40 @@
+services:
+
+  postgres_vm:
+    build: ./postgres_vm
+    container_name: postgres_vm
+    networks:
+      - labnet
+
+  nginx_vm:
+    build: ./nginx_vm
+    container_name: nginx_vm
+    networks:
+      - labnet
+
+  ansible:
+    build: ./ansible
+    container_name: ansible_control
+    volumes:
+      - ./ansible:/ansible
+    working_dir: /ansible
+    tty: true
+    networks:
+      - labnet
+
+  jenkins:
+    build: ./jenkins
+    container_name: jenkins_main
+    ports:
+      - "8080:8080"
+      - "50000:50000"
+    volumes:
+      - ./jenkins_home:/var/jenkins_home
+      - /var/run/docker.sock:/var/run/docker.sock 
+    networks:
+      - labnet 
+networks:
+  labnet:
+    driver: bridge
+volumes:
+  jenkins_home:
