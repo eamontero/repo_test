@@ -1,0 +1,30 @@
+---
+- name: Preparar postgres_vm
+  hosts: postgres
+  become: true
+
+  tasks:
+    - name: Actualizar cache
+      apt:
+        update_cache: yes
+
+    - name: Instalar PostgreSQL
+      apt:
+        name: postgresql
+        state: present
+
+
+- name: Preparar nginx_vm
+  hosts: nginx
+  become: true
+
+  tasks:
+    - name: Actualizar cache
+      apt:
+        update_cache: yes
+
+    - name: Instalar Nginx
+      apt:
+        name: nginx
+        state: present
+        
