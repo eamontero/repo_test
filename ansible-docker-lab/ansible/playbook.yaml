@@ -6,7 +6,7 @@
   tasks:
     - name: Actualizar cache
       apt:
-        update_cache: yes
+        update_cache: true
 
     - name: Instalar PostgreSQL
       apt:
@@ -21,7 +21,7 @@
   tasks:
     - name: Actualizar cache
       apt:
-        update_cache: yes
+        update_cache: true
 
     - name: Instalar Nginx
       apt:
