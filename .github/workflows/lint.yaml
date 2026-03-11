@@ -20,4 +20,3 @@ jobs:
 
       - name: Exec lint
         run: yamllint .
-        
